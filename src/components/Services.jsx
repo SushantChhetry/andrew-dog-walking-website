@@ -1,7 +1,11 @@
 // --- SERVICES SECTION ---
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Services() {
+  const [currentServiceIndex, setCurrentServiceIndex] = useState(0)
+  const [currentPackageIndex, setCurrentPackageIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
   const services = [
     {
       id: 1,
@@ -131,6 +135,61 @@ function Services() {
     }
   ]
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 767)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Auto-advance carousel on mobile
+  useEffect(() => {
+    if (!isMobile) return
+
+    const interval = setInterval(() => {
+      setCurrentServiceIndex((prev) => (prev + 1) % services.length)
+    }, 5000) // Auto-advance every 5 seconds
+
+    return () => clearInterval(interval)
+  }, [isMobile, services.length])
+
+  useEffect(() => {
+    if (!isMobile) return
+
+    const interval = setInterval(() => {
+      setCurrentPackageIndex((prev) => (prev + 1) % packages.length)
+    }, 6000) // Auto-advance every 6 seconds
+
+    return () => clearInterval(interval)
+  }, [isMobile, packages.length])
+
+  const nextService = () => {
+    setCurrentServiceIndex((prev) => (prev + 1) % services.length)
+  }
+
+  const prevService = () => {
+    setCurrentServiceIndex((prev) => (prev - 1 + services.length) % services.length)
+  }
+
+  const goToService = (index) => {
+    setCurrentServiceIndex(index)
+  }
+
+  const nextPackage = () => {
+    setCurrentPackageIndex((prev) => (prev + 1) % packages.length)
+  }
+
+  const prevPackage = () => {
+    setCurrentPackageIndex((prev) => (prev - 1 + packages.length) % packages.length)
+  }
+
+  const goToPackage = (index) => {
+    setCurrentPackageIndex(index)
+  }
+
   return (
     <section className="services" id="services">
       <div className="container">
@@ -138,63 +197,204 @@ function Services() {
         <p className="section-subtitle">
           Professional dog care services tailored to your pet's needs
         </p>
+        {isMobile && (
+          <p className="mobile-swipe-hint">
+            👆 Swipe or use arrows to explore all services
+          </p>
+        )}
         
-        <div className="services-grid">
-          {services.map(service => (
-            <div key={service.id} className={`service-card ${service.popular ? 'popular' : ''}`}>
-              {service.popular && <div className="popular-badge">Most Popular</div>}
-              <div className="service-image">
-                <img 
-                  src={`https://images.unsplash.com/photo-${service.id === 1 ? '1552053831-71594a27632d' : service.id === 2 ? '1583337130417-3346a1be7dee' : service.id === 3 ? '1601758228041-f3b2795255f1' : service.id === 4 ? '1548199973-03cce0bbc87b' : service.id === 5 ? '1587300003388-59208cc962cb' : '1601758228041-f3b2795255f1'}?w=300&h=200&fit=crop`}
-                  alt={service.title}
-                  className="service-img"
-                />
-              </div>
-              <h3 className="service-title">{service.title}</h3>
-              <div className="service-pricing">
-                <span className="service-price">{service.price}</span>
-                <span className="service-duration">per {service.duration}</span>
-              </div>
-              <p className="service-description">{service.description}</p>
-              <ul className="service-features">
-                {service.features.map((feature, index) => (
-                  <li key={index} className="service-feature">
-                    <span className="feature-icon">✓</span>
-                    {feature}
-                  </li>
+        {isMobile ? (
+          <div className="services-mobile-carousel">
+            <div className="services-carousel-container">
+              <div 
+                className="services-carousel-track"
+                style={{ transform: `translateX(-${currentServiceIndex * 100}%)` }}
+              >
+                {services.map(service => (
+                  <div key={service.id} className="service-carousel-slide">
+                    <div className={`service-card ${service.popular ? 'popular' : ''}`}>
+                      {service.popular && <div className="popular-badge">Most Popular</div>}
+                      <div className="service-image">
+                        <img 
+                          src={`https://images.unsplash.com/photo-${service.id === 1 ? '1552053831-71594a27632d' : service.id === 2 ? '1583337130417-3346a1be7dee' : service.id === 3 ? '1601758228041-f3b2795255f1' : service.id === 4 ? '1548199973-03cce0bbc87b' : service.id === 5 ? '1587300003388-59208cc962cb' : '1601758228041-f3b2795255f1'}?w=300&h=200&fit=crop`}
+                          alt={service.title}
+                          className="service-img"
+                        />
+                      </div>
+                      <h3 className="service-title">{service.title}</h3>
+                      <div className="service-pricing">
+                        <span className="service-price">{service.price}</span>
+                        <span className="service-duration">per {service.duration}</span>
+                      </div>
+                      <p className="service-description">{service.description}</p>
+                      <ul className="service-features">
+                        {service.features.map((feature, index) => (
+                          <li key={index} className="service-feature">
+                            <span className="feature-icon">✓</span>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                      <a href="#contact" className="btn btn-primary service-btn">Book This Service</a>
+                    </div>
+                  </div>
                 ))}
-              </ul>
-              <a href="#contact" className="btn btn-primary service-btn">Book This Service</a>
+              </div>
             </div>
-          ))}
-        </div>
+            
+            <div className="services-carousel-controls">
+              <button 
+                className="carousel-btn carousel-btn-prev"
+                onClick={prevService}
+                aria-label="Previous service"
+              >
+                ‹
+              </button>
+              <button 
+                className="carousel-btn carousel-btn-next"
+                onClick={nextService}
+                aria-label="Next service"
+              >
+                ›
+              </button>
+            </div>
+            
+            <div className="services-carousel-dots">
+              {services.map((_, index) => (
+                <button
+                  key={index}
+                  className={`carousel-dot ${index === currentServiceIndex ? 'active' : ''}`}
+                  onClick={() => goToService(index)}
+                  aria-label={`Go to service ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="services-grid">
+            {services.map(service => (
+              <div key={service.id} className={`service-card ${service.popular ? 'popular' : ''}`}>
+                {service.popular && <div className="popular-badge">Most Popular</div>}
+                <div className="service-image">
+                  <img 
+                    src={`https://images.unsplash.com/photo-${service.id === 1 ? '1552053831-71594a27632d' : service.id === 2 ? '1583337130417-3346a1be7dee' : service.id === 3 ? '1601758228041-f3b2795255f1' : service.id === 4 ? '1548199973-03cce0bbc87b' : service.id === 5 ? '1587300003388-59208cc962cb' : '1601758228041-f3b2795255f1'}?w=300&h=200&fit=crop`}
+                    alt={service.title}
+                    className="service-img"
+                  />
+                </div>
+                <h3 className="service-title">{service.title}</h3>
+                <div className="service-pricing">
+                  <span className="service-price">{service.price}</span>
+                  <span className="service-duration">per {service.duration}</span>
+                </div>
+                <p className="service-description">{service.description}</p>
+                <ul className="service-features">
+                  {service.features.map((feature, index) => (
+                    <li key={index} className="service-feature">
+                      <span className="feature-icon">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <a href="#contact" className="btn btn-primary service-btn">Book This Service</a>
+              </div>
+            ))}
+          </div>
+        )}
         
         <div className="packages-section">
           <h3 className="packages-title">Service Packages</h3>
           <p className="packages-subtitle">Save more with our bundled packages</p>
+          {isMobile && (
+            <p className="mobile-swipe-hint">
+              👆 Swipe or use arrows to explore all packages
+            </p>
+          )}
           
-          <div className="packages-grid">
-            {packages.map(pkg => (
-              <div key={pkg.id} className={`package-card ${pkg.popular ? 'popular' : ''}`}>
-                {pkg.popular && <div className="popular-badge">Best Value</div>}
-                <h4 className="package-name">{pkg.name}</h4>
-                <div className="package-pricing">
-                  <span className="package-price">{pkg.price}</span>
-                  <span className="package-original-price">{pkg.originalPrice}</span>
-                </div>
-                <p className="package-description">{pkg.description}</p>
-                <ul className="package-services">
-                  {pkg.services.map((service, index) => (
-                    <li key={index} className="package-service">
-                      <span className="service-icon">✓</span>
-                      {service}
-                    </li>
+          {isMobile ? (
+            <div className="packages-mobile-carousel">
+              <div className="packages-carousel-container">
+                <div 
+                  className="packages-carousel-track"
+                  style={{ transform: `translateX(-${currentPackageIndex * 100}%)` }}
+                >
+                  {packages.map(pkg => (
+                    <div key={pkg.id} className="package-carousel-slide">
+                      <div className={`package-card ${pkg.popular ? 'popular' : ''}`}>
+                        {pkg.popular && <div className="popular-badge">Best Value</div>}
+                        <h4 className="package-name">{pkg.name}</h4>
+                        <div className="package-pricing">
+                          <span className="package-price">{pkg.price}</span>
+                          <span className="package-original-price">{pkg.originalPrice}</span>
+                        </div>
+                        <p className="package-description">{pkg.description}</p>
+                        <ul className="package-services">
+                          {pkg.services.map((service, index) => (
+                            <li key={index} className="package-service">
+                              <span className="service-icon">✓</span>
+                              {service}
+                            </li>
+                          ))}
+                        </ul>
+                        <a href="#contact" className="btn btn-primary package-btn">Choose Package</a>
+                      </div>
+                    </div>
                   ))}
-                </ul>
-                <a href="#contact" className="btn btn-primary package-btn">Choose Package</a>
+                </div>
               </div>
-            ))}
-          </div>
+              
+              <div className="packages-carousel-controls">
+                <button 
+                  className="carousel-btn carousel-btn-prev"
+                  onClick={prevPackage}
+                  aria-label="Previous package"
+                >
+                  ‹
+                </button>
+                <button 
+                  className="carousel-btn carousel-btn-next"
+                  onClick={nextPackage}
+                  aria-label="Next package"
+                >
+                  ›
+                </button>
+              </div>
+              
+              <div className="packages-carousel-dots">
+                {packages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`carousel-dot ${index === currentPackageIndex ? 'active' : ''}`}
+                    onClick={() => goToPackage(index)}
+                    aria-label={`Go to package ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="packages-grid">
+              {packages.map(pkg => (
+                <div key={pkg.id} className={`package-card ${pkg.popular ? 'popular' : ''}`}>
+                  {pkg.popular && <div className="popular-badge">Best Value</div>}
+                  <h4 className="package-name">{pkg.name}</h4>
+                  <div className="package-pricing">
+                    <span className="package-price">{pkg.price}</span>
+                    <span className="package-original-price">{pkg.originalPrice}</span>
+                  </div>
+                  <p className="package-description">{pkg.description}</p>
+                  <ul className="package-services">
+                    {pkg.services.map((service, index) => (
+                      <li key={index} className="package-service">
+                        <span className="service-icon">✓</span>
+                        {service}
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="#contact" className="btn btn-primary package-btn">Choose Package</a>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         
         <div className="services-cta">

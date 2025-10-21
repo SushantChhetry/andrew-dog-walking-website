@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 function Testimonials() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
   
   const testimonials = [
     {
@@ -74,28 +75,44 @@ function Testimonials() {
     }
   ]
 
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 767)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return
     
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % testimonials.length)
-    }, 5000) // Change slide every 5 seconds
+    }, 6000) // Change slide every 6 seconds
 
     return () => clearInterval(interval)
   }, [isAutoPlaying, testimonials.length])
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % testimonials.length)
+    setIsAutoPlaying(false) // Stop auto-play when user interacts
   }
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    setIsAutoPlaying(false) // Stop auto-play when user interacts
   }
 
   const goToSlide = (index) => {
     setCurrentSlide(index)
+    setIsAutoPlaying(false) // Stop auto-play when user interacts
   }
+
+  const currentTestimonial = testimonials[currentSlide]
 
   return (
     <section className="testimonials" id="testimonials">
@@ -122,43 +139,34 @@ function Testimonials() {
         
         <div className="testimonials-carousel">
           <div className="carousel-container">
-            <div 
-              className="carousel-track"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {testimonials.map(testimonial => (
-                <div key={testimonial.id} className="testimonial-slide">
-                  <div className="testimonial-card">
-                    <div className="testimonial-header">
-                      <div className="testimonial-dog-image">
-                        <img 
-                          src={testimonial.dogImage}
-                          alt={`${testimonial.dogName} - happy dog`}
-                          className="testimonial-dog-img"
-                        />
-                      </div>
-                      <div className="testimonial-info">
-                        <div className="testimonial-name">{testimonial.name}</div>
-                        <div className="testimonial-location">{testimonial.location}</div>
-                        <div className="testimonial-dog">{testimonial.dogName}</div>
-                        <div className="testimonial-rating">{testimonial.rating}</div>
-                      </div>
-                      <div className="testimonial-verified">
-                        {testimonial.verified && <span className="verified-badge">✓ Verified</span>}
-                      </div>
-                    </div>
-                    
-                    <div className="testimonial-content">
-                      <p className="testimonial-text">"{testimonial.text}"</p>
-                    </div>
-                    
-                    <div className="testimonial-footer">
-                      <div className="testimonial-date">{testimonial.date}</div>
-                      <div className="testimonial-source">Google Review</div>
-                    </div>
-                  </div>
+            <div className="testimonial-card">
+              <div className="testimonial-header">
+                <div className="testimonial-dog-image">
+                  <img 
+                    src={currentTestimonial.dogImage}
+                    alt={`${currentTestimonial.dogName} - happy dog`}
+                    className="testimonial-dog-img"
+                  />
                 </div>
-              ))}
+                <div className="testimonial-info">
+                  <div className="testimonial-name">{currentTestimonial.name}</div>
+                  <div className="testimonial-location">{currentTestimonial.location}</div>
+                  <div className="testimonial-dog">{currentTestimonial.dogName}</div>
+                  <div className="testimonial-rating">{currentTestimonial.rating}</div>
+                </div>
+                <div className="testimonial-verified">
+                  {currentTestimonial.verified && <span className="verified-badge">✓ Verified</span>}
+                </div>
+              </div>
+              
+              <div className="testimonial-content">
+                <p className="testimonial-text">"{currentTestimonial.text}"</p>
+              </div>
+              
+              <div className="testimonial-footer">
+                <div className="testimonial-date">{currentTestimonial.date}</div>
+                <div className="testimonial-source">Google Review</div>
+              </div>
             </div>
           </div>
           
@@ -167,16 +175,14 @@ function Testimonials() {
             <button 
               className="carousel-btn carousel-btn-prev"
               onClick={prevSlide}
-              onMouseEnter={() => setIsAutoPlaying(false)}
-              onMouseLeave={() => setIsAutoPlaying(true)}
+              aria-label="Previous testimonial"
             >
               ‹
             </button>
             <button 
               className="carousel-btn carousel-btn-next"
               onClick={nextSlide}
-              onMouseEnter={() => setIsAutoPlaying(false)}
-              onMouseLeave={() => setIsAutoPlaying(true)}
+              aria-label="Next testimonial"
             >
               ›
             </button>
@@ -189,8 +195,7 @@ function Testimonials() {
                 key={index}
                 className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
                 onClick={() => goToSlide(index)}
-                onMouseEnter={() => setIsAutoPlaying(false)}
-                onMouseLeave={() => setIsAutoPlaying(true)}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
