@@ -1425,6 +1425,95 @@ section {
   margin-bottom: var(--spacing-xl);
 }
 
+/* Service Area Controls */
+.service-area-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  align-items: center;
+}
+
+.area-filters {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.area-filters .filter-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--white);
+  border: 2px solid var(--light-gray);
+  border-radius: var(--radius-md);
+  color: var(--dark-gray);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.area-filters .filter-btn:hover {
+  border-color: var(--primary-green);
+  color: var(--primary-green);
+  transform: translateY(-1px);
+}
+
+.area-filters .filter-btn.active {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: var(--white);
+}
+
+.area-filters .filter-icon {
+  font-size: 1rem;
+}
+
+.expand-areas-btn,
+.collapse-areas-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.expand-areas-btn:hover,
+.collapse-areas-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.expand-icon,
+.collapse-icon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.expand-areas-btn:hover .expand-icon {
+  transform: translateY(2px);
+}
+
+.collapse-areas-btn:hover .collapse-icon {
+  transform: translateY(-2px);
+}
+
+.collapse-areas {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+}
+
 .coverage-stat {
   text-align: center;
   background-color: var(--off-white);
@@ -2128,6 +2217,26 @@ section {
     gap: var(--spacing-sm);
   }
   
+  /* Mobile service area controls */
+  .service-area-controls {
+    gap: var(--spacing-md);
+  }
+  
+  .area-filters {
+    gap: var(--spacing-xs);
+  }
+  
+  .area-filters .filter-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.85rem;
+  }
+  
+  .expand-areas-btn,
+  .collapse-areas-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.9rem;
+  }
+
   /* Mobile service area cards */
   .service-area-card {
     padding: var(--spacing-md);
@@ -2548,6 +2657,20 @@ section {
     grid-template-columns: repeat(2, 1fr);
   }
   
+  .service-area-controls {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .area-filters {
+    gap: var(--spacing-sm);
+  }
+  
+  .area-filters .filter-btn {
+    font-size: 0.9rem;
+  }
+  
   .featured-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2641,6 +2764,21 @@ section {
   
   .service-areas-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .service-area-controls {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .area-filters {
+    gap: var(--spacing-md);
+  }
+  
+  .area-filters .filter-btn {
+    font-size: 1rem;
+    padding: var(--spacing-sm) var(--spacing-lg);
   }
   
   .featured-grid {

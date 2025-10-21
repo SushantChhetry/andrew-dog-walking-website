@@ -2,80 +2,6 @@
 import React from 'react'
 
 function ServiceArea() {
-  const serviceAreas = [
-    {
-      id: 1,
-      name: 'Cambridge',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🎓'
-    },
-    {
-      id: 2,
-      name: 'Somerville',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🏘️'
-    },
-    {
-      id: 3,
-      name: 'Back Bay',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🏛️'
-    },
-    {
-      id: 4,
-      name: 'Beacon Hill',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🏔️'
-    },
-    {
-      id: 5,
-      name: 'South End',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🌳'
-    },
-    {
-      id: 6,
-      name: 'North End',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🍝'
-    },
-    {
-      id: 7,
-      name: 'Charlestown',
-      status: 'Extended Service Area',
-      description: 'Limited service coverage with advance booking',
-      features: ['24-hour advance booking', 'Standard hours', 'Regular support'],
-      icon: '⚓'
-    },
-    {
-      id: 8,
-      name: 'Allston',
-      status: 'Extended Service Area',
-      description: 'Limited service coverage with advance booking',
-      features: ['24-hour advance booking', 'Standard hours', 'Regular support'],
-      icon: '🎨'
-    },
-    {
-      id: 9,
-      name: 'Brighton',
-      status: 'Extended Service Area',
-      description: 'Limited service coverage with advance booking',
-      features: ['24-hour advance booking', 'Standard hours', 'Regular support'],
-      icon: '🌅'
-    }
-  ]
 
   const coverageStats = [
     {
@@ -118,34 +44,12 @@ function ServiceArea() {
           ))}
         </div>
 
-        <div className="service-areas-grid">
-          {serviceAreas.map(area => (
-            <div key={area.id} className={`service-area-card ${area.status.toLowerCase().replace(' ', '-')}`}>
-              <div className="area-header">
-                <div className="area-icon">{area.icon}</div>
-                <div className="area-info">
-                  <h3 className="area-name">{area.name}</h3>
-                  <span className="area-status">{area.status}</span>
-                </div>
-              </div>
-              <p className="area-description">{area.description}</p>
-              <ul className="area-features">
-                {area.features.map((feature, index) => (
-                  <li key={index} className="area-feature">
-                    <span className="feature-icon">✓</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
 
         <div className="service-area-map">
           <div className="map-placeholder">
             <div className="map-icon">🗺️</div>
-            <h3>Interactive Service Area Map</h3>
-            <p>Click on your neighborhood to see detailed coverage information</p>
+            <h3>Service Coverage Map</h3>
+            <p>We cover 15+ neighborhoods across the Boston area</p>
             <div className="map-legend">
               <div className="legend-item">
                 <div className="legend-color primary"></div>
