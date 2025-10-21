@@ -13,8 +13,11 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="header-container">
-          <img src="/logo.png" alt="Husky Trails Logo" className="header-logo" />
-          <h1 className="brand-name">Husky Trails</h1>
+          <div className="header-brand">
+            <img src="/logo.png" alt="Husky Trails Logo" className="header-logo" />
+            <h1 className="brand-name">Husky Trails</h1>
+          </div>
+          <a href="#contact" className="btn btn-primary header-book-btn">Book Now</a>
         </div>
       </header>
 

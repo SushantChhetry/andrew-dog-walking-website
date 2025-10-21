@@ -174,17 +174,17 @@ function Services() {
           <p className="packages-subtitle">Save more with our bundled packages</p>
           
           <div className="packages-grid">
-            {packages.map(package => (
-              <div key={package.id} className={`package-card ${package.popular ? 'popular' : ''}`}>
-                {package.popular && <div className="popular-badge">Best Value</div>}
-                <h4 className="package-name">{package.name}</h4>
+            {packages.map(pkg => (
+              <div key={pkg.id} className={`package-card ${pkg.popular ? 'popular' : ''}`}>
+                {pkg.popular && <div className="popular-badge">Best Value</div>}
+                <h4 className="package-name">{pkg.name}</h4>
                 <div className="package-pricing">
-                  <span className="package-price">{package.price}</span>
-                  <span className="package-original-price">{package.originalPrice}</span>
+                  <span className="package-price">{pkg.price}</span>
+                  <span className="package-original-price">{pkg.originalPrice}</span>
                 </div>
-                <p className="package-description">{package.description}</p>
+                <p className="package-description">{pkg.description}</p>
                 <ul className="package-services">
-                  {package.services.map((service, index) => (
+                  {pkg.services.map((service, index) => (
                     <li key={index} className="package-service">
                       <span className="service-icon">✓</span>
                       {service}

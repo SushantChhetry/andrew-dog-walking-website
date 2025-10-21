@@ -5,75 +5,75 @@ function ServiceArea() {
   const serviceAreas = [
     {
       id: 1,
-      name: 'Capitol Hill',
+      name: 'Cambridge',
       status: 'Primary Service Area',
       description: 'Full service coverage including all neighborhoods',
       features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🏛️'
+      icon: '🎓'
     },
     {
       id: 2,
-      name: 'Queen Anne',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '👑'
-    },
-    {
-      id: 3,
-      name: 'Ballard',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🌊'
-    },
-    {
-      id: 4,
-      name: 'Fremont',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🎭'
-    },
-    {
-      id: 5,
-      name: 'Green Lake',
-      status: 'Primary Service Area',
-      description: 'Full service coverage including all neighborhoods',
-      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
-      icon: '🌲'
-    },
-    {
-      id: 6,
-      name: 'Wallingford',
+      name: 'Somerville',
       status: 'Primary Service Area',
       description: 'Full service coverage including all neighborhoods',
       features: ['Same-day booking available', 'Extended hours', 'Priority support'],
       icon: '🏘️'
     },
     {
-      id: 7,
-      name: 'University District',
-      status: 'Extended Service Area',
-      description: 'Limited service coverage with advance booking',
-      features: ['24-hour advance booking', 'Standard hours', 'Regular support'],
-      icon: '🎓'
+      id: 3,
+      name: 'Back Bay',
+      status: 'Primary Service Area',
+      description: 'Full service coverage including all neighborhoods',
+      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
+      icon: '🏛️'
     },
     {
-      id: 8,
-      name: 'Ravenna',
-      status: 'Extended Service Area',
-      description: 'Limited service coverage with advance booking',
-      features: ['24-hour advance booking', 'Standard hours', 'Regular support'],
+      id: 4,
+      name: 'Beacon Hill',
+      status: 'Primary Service Area',
+      description: 'Full service coverage including all neighborhoods',
+      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
+      icon: '🏔️'
+    },
+    {
+      id: 5,
+      name: 'South End',
+      status: 'Primary Service Area',
+      description: 'Full service coverage including all neighborhoods',
+      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
       icon: '🌳'
     },
     {
-      id: 9,
-      name: 'Madison Park',
+      id: 6,
+      name: 'North End',
+      status: 'Primary Service Area',
+      description: 'Full service coverage including all neighborhoods',
+      features: ['Same-day booking available', 'Extended hours', 'Priority support'],
+      icon: '🍝'
+    },
+    {
+      id: 7,
+      name: 'Charlestown',
       status: 'Extended Service Area',
       description: 'Limited service coverage with advance booking',
       features: ['24-hour advance booking', 'Standard hours', 'Regular support'],
-      icon: '🏞️'
+      icon: '⚓'
+    },
+    {
+      id: 8,
+      name: 'Allston',
+      status: 'Extended Service Area',
+      description: 'Limited service coverage with advance booking',
+      features: ['24-hour advance booking', 'Standard hours', 'Regular support'],
+      icon: '🎨'
+    },
+    {
+      id: 9,
+      name: 'Brighton',
+      status: 'Extended Service Area',
+      description: 'Limited service coverage with advance booking',
+      features: ['24-hour advance booking', 'Standard hours', 'Regular support'],
+      icon: '🌅'
     }
   ]
 
@@ -81,7 +81,7 @@ function ServiceArea() {
     {
       number: '15+',
       label: 'Neighborhoods Served',
-      description: 'Comprehensive coverage across Seattle'
+      description: 'Comprehensive coverage across Boston area'
     },
     {
       number: '30min',
@@ -105,7 +105,7 @@ function ServiceArea() {
       <div className="container">
         <h2 className="section-title">Service Areas</h2>
         <p className="section-subtitle">
-          Proudly serving Seattle neighborhoods with reliable dog walking services
+          Proudly serving Boston area neighborhoods with reliable dog walking services
         </p>
         
         <div className="coverage-stats">

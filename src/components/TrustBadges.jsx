@@ -20,12 +20,6 @@ function TrustBadges() {
       icon: '⭐',
       text: '5-Star Rated',
       description: 'Loved by local pet parents'
-    },
-    {
-      id: 4,
-      icon: '🏠',
-      text: 'Local Expert',
-      description: 'Serving the community for 3+ years'
     }
   ]
 
@@ -33,12 +27,9 @@ function TrustBadges() {
     <div className="trust-badges">
       <div className="trust-badges-container">
         {badges.map(badge => (
-          <div key={badge.id} className="trust-badge">
+          <div key={badge.id} className="trust-badge-pill">
             <div className="trust-badge-icon">{badge.icon}</div>
-            <div className="trust-badge-content">
-              <div className="trust-badge-text">{badge.text}</div>
-              <div className="trust-badge-description">{badge.description}</div>
-            </div>
+            <div className="trust-badge-text">{badge.text}</div>
           </div>
         ))}
       </div>

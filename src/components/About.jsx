@@ -32,7 +32,7 @@ function About() {
               Your pet's happiness and safety are my top priorities.
             </p>
             <p>
-              <strong>Fun Fact:</strong> I've walked over 200 different dogs in the Seattle 
+              <strong>Fun Fact:</strong> I've walked over 200 different dogs in the Boston 
               area and have never met a pup I didn't love! From energetic puppies to 
               senior dogs who prefer gentle strolls, I adapt my approach to each dog's 
               unique personality and needs.
@@ -40,40 +40,6 @@ function About() {
             <p className="about-cta-text">
               Let's give your pup the tail-wagging experience they deserve! 🐾
             </p>
-          </div>
-        </div>
-        
-        <div className="about-certifications">
-          <h3>Professional Certifications & Training</h3>
-          <div className="certifications-grid">
-            <div className="certification">
-              <div className="cert-icon">🩺</div>
-              <div className="cert-content">
-                <h4>Pet First Aid & CPR</h4>
-                <p>Certified by American Red Cross</p>
-              </div>
-            </div>
-            <div className="certification">
-              <div className="cert-icon">🎓</div>
-              <div className="cert-content">
-                <h4>Dog Behavior Training</h4>
-                <p>Professional certification completed</p>
-              </div>
-            </div>
-            <div className="certification">
-              <div className="cert-icon">🛡️</div>
-              <div className="cert-content">
-                <h4>Fully Insured</h4>
-                <p>Comprehensive liability coverage</p>
-              </div>
-            </div>
-            <div className="certification">
-              <div className="cert-icon">⭐</div>
-              <div className="cert-content">
-                <h4>5-Star Rated</h4>
-                <p>200+ happy clients in Seattle</p>
-              </div>
-            </div>
           </div>
         </div>
         
