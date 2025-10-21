@@ -5,6 +5,10 @@ function Services() {
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0)
   const [currentPackageIndex, setCurrentPackageIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [touchStart, setTouchStart] = useState(null)
+  const [touchEnd, setTouchEnd] = useState(null)
+  const [packageTouchStart, setPackageTouchStart] = useState(null)
+  const [packageTouchEnd, setPackageTouchEnd] = useState(null)
 
   const services = [
     {
@@ -190,6 +194,54 @@ function Services() {
     setCurrentPackageIndex(index)
   }
 
+  // Touch handlers for services carousel
+  const handleTouchStart = (e) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      nextService()
+    }
+    if (isRightSwipe) {
+      prevService()
+    }
+  }
+
+  // Touch handlers for packages carousel
+  const handlePackageTouchStart = (e) => {
+    setPackageTouchEnd(null)
+    setPackageTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handlePackageTouchMove = (e) => {
+    setPackageTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handlePackageTouchEnd = () => {
+    if (!packageTouchStart || !packageTouchEnd) return
+    const distance = packageTouchStart - packageTouchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      nextPackage()
+    }
+    if (isRightSwipe) {
+      prevPackage()
+    }
+  }
+
   return (
     <section className="services" id="services">
       <div className="container">
@@ -205,7 +257,12 @@ function Services() {
         
         {isMobile ? (
           <div className="services-mobile-carousel">
-            <div className="services-carousel-container">
+            <div 
+              className="services-carousel-container"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               <div 
                 className="services-carousel-track"
                 style={{ transform: `translateX(-${currentServiceIndex * 100}%)` }}
@@ -313,7 +370,12 @@ function Services() {
           
           {isMobile ? (
             <div className="packages-mobile-carousel">
-              <div className="packages-carousel-container">
+              <div 
+                className="packages-carousel-container"
+                onTouchStart={handlePackageTouchStart}
+                onTouchMove={handlePackageTouchMove}
+                onTouchEnd={handlePackageTouchEnd}
+              >
                 <div 
                   className="packages-carousel-track"
                   style={{ transform: `translateX(-${currentPackageIndex * 100}%)` }}

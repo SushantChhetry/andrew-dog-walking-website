@@ -400,6 +400,8 @@ section {
 .services-mobile-carousel {
   position: relative;
   margin-bottom: var(--spacing-xxl);
+  width: 100%;
+  max-width: 100%;
 }
 
 .services-carousel-container {
@@ -409,19 +411,24 @@ section {
   padding: var(--spacing-md);
   box-shadow: var(--shadow-md);
   margin: 0 var(--spacing-sm);
+  width: calc(100% - 2 * var(--spacing-sm));
+  max-width: 100%;
 }
 
 .services-carousel-track {
   display: flex;
   transition: transform 0.5s ease-in-out;
   align-items: stretch;
+  width: 100%;
 }
 
 .service-carousel-slide {
   min-width: 100%;
+  width: 100%;
   flex-shrink: 0;
   display: flex;
   align-items: stretch;
+  box-sizing: border-box;
 }
 
 .services-carousel-controls {
@@ -434,23 +441,26 @@ section {
   justify-content: space-between;
   pointer-events: none;
   z-index: 2;
+  padding: 0 var(--spacing-sm);
 }
 
 .services-carousel-controls .carousel-btn {
   background-color: var(--white);
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
   color: var(--primary-green);
   cursor: pointer;
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   pointer-events: auto;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .services-carousel-controls .carousel-btn:hover {
@@ -459,12 +469,16 @@ section {
   transform: scale(1.1);
 }
 
+.services-carousel-controls .carousel-btn:active {
+  transform: scale(0.95);
+}
+
 .services-carousel-controls .carousel-btn-prev {
-  margin-left: -20px;
+  margin-left: -22px;
 }
 
 .services-carousel-controls .carousel-btn-next {
-  margin-right: -20px;
+  margin-right: -22px;
 }
 
 .services-carousel-dots {
@@ -472,24 +486,40 @@ section {
   justify-content: center;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-lg);
+  padding: var(--spacing-sm);
 }
 
 .services-carousel-dots .carousel-dot {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   border: none;
   background-color: var(--light-gray);
   cursor: pointer;
   transition: all 0.3s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.services-carousel-dots .carousel-dot.active {
+.services-carousel-dots .carousel-dot::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--light-gray);
+  transition: all 0.3s ease;
+}
+
+.services-carousel-dots .carousel-dot.active::before {
   background-color: var(--primary-green);
   transform: scale(1.2);
 }
 
-.services-carousel-dots .carousel-dot:hover {
+.services-carousel-dots .carousel-dot:hover::before {
   background-color: var(--primary-green);
   opacity: 0.7;
 }
@@ -498,6 +528,8 @@ section {
 .packages-mobile-carousel {
   position: relative;
   margin-bottom: var(--spacing-xl);
+  width: 100%;
+  max-width: 100%;
 }
 
 .packages-carousel-container {
@@ -507,19 +539,24 @@ section {
   padding: var(--spacing-md);
   box-shadow: var(--shadow-md);
   margin: 0 var(--spacing-sm);
+  width: calc(100% - 2 * var(--spacing-sm));
+  max-width: 100%;
 }
 
 .packages-carousel-track {
   display: flex;
   transition: transform 0.5s ease-in-out;
   align-items: stretch;
+  width: 100%;
 }
 
 .package-carousel-slide {
   min-width: 100%;
+  width: 100%;
   flex-shrink: 0;
   display: flex;
   align-items: stretch;
+  box-sizing: border-box;
 }
 
 .packages-carousel-controls {
@@ -532,23 +569,26 @@ section {
   justify-content: space-between;
   pointer-events: none;
   z-index: 2;
+  padding: 0 var(--spacing-sm);
 }
 
 .packages-carousel-controls .carousel-btn {
   background-color: var(--white);
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
   color: var(--primary-green);
   cursor: pointer;
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   pointer-events: auto;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .packages-carousel-controls .carousel-btn:hover {
@@ -557,12 +597,16 @@ section {
   transform: scale(1.1);
 }
 
+.packages-carousel-controls .carousel-btn:active {
+  transform: scale(0.95);
+}
+
 .packages-carousel-controls .carousel-btn-prev {
-  margin-left: -20px;
+  margin-left: -22px;
 }
 
 .packages-carousel-controls .carousel-btn-next {
-  margin-right: -20px;
+  margin-right: -22px;
 }
 
 .packages-carousel-dots {
@@ -570,24 +614,40 @@ section {
   justify-content: center;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-lg);
+  padding: var(--spacing-sm);
 }
 
 .packages-carousel-dots .carousel-dot {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   border: none;
   background-color: var(--light-gray);
   cursor: pointer;
   transition: all 0.3s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.packages-carousel-dots .carousel-dot.active {
+.packages-carousel-dots .carousel-dot::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--light-gray);
+  transition: all 0.3s ease;
+}
+
+.packages-carousel-dots .carousel-dot.active::before {
   background-color: var(--primary-green);
   transform: scale(1.2);
 }
 
-.packages-carousel-dots .carousel-dot:hover {
+.packages-carousel-dots .carousel-dot:hover::before {
   background-color: var(--primary-green);
   opacity: 0.7;
 }
@@ -2435,12 +2495,51 @@ section {
   .services-mobile-carousel,
   .packages-mobile-carousel {
     margin: 0 var(--spacing-xs);
+    width: 100%;
+    max-width: 100%;
   }
   
   .services-carousel-container,
   .packages-carousel-container {
     margin: 0;
     padding: var(--spacing-sm);
+    width: calc(100% - 2 * var(--spacing-xs));
+    max-width: 100%;
+  }
+  
+  .services-carousel-track,
+  .packages-carousel-track {
+    width: 100%;
+  }
+  
+  .service-carousel-slide,
+  .package-carousel-slide {
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  .services-carousel-controls,
+  .packages-carousel-controls {
+    padding: 0 var(--spacing-xs);
+  }
+  
+  .services-carousel-controls .carousel-btn,
+  .packages-carousel-controls .carousel-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+  
+  .services-carousel-controls .carousel-btn-prev,
+  .packages-carousel-controls .carousel-btn-prev {
+    margin-left: -24px;
+  }
+  
+  .services-carousel-controls .carousel-btn-next,
+  .packages-carousel-controls .carousel-btn-next {
+    margin-right: -24px;
   }
   
   /* Better mobile section spacing */
